@@ -7,7 +7,8 @@
    - game_logic - validations of inputed numbers, generating tickets and winning combination
    - main       - making game live
 
+
  **Structures to create:**
-   - Player 
-   - Ticket
-   - Game
+  - Player 
+  - Ticket
+  - Game
