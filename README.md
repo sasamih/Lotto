@@ -8,6 +8,7 @@
   - main       - making game live
 
 
+
   **Structures to create:**
     - Player 
     - Ticket
