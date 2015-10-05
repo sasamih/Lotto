@@ -9,6 +9,9 @@
 
 
  **Structures to create:**
-  - Player 
+  - Player
   - Ticket
   - Game
+
+**Notes**
+  - Write main makefile
