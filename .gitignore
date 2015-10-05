@@ -25,3 +25,4 @@
 *.hex
 # Debug files
 *.dSYM/
+*~
