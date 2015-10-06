@@ -15,6 +15,8 @@ TEST_GROUP_RUNNER(LogicWriteDownNumber)
   RUN_TEST_CASE(LogicWriteDownNumber, AddFirstNumberToTicket);
   RUN_TEST_CASE(LogicWriteDownNumber, AddThreeNumbersToTicket);
   RUN_TEST_CASE(LogicWriteDownNumber, AddMaxNumbersToTicket);
+  RUN_TEST_CASE(LogicWriteDownNumber, TicketFull);
+  RUN_TEST_CASE(LogicWriteDownNumber, SameNumberTwice);
 }
 
 TEST_SETUP(LogicInitialiseTicket)
@@ -87,4 +89,29 @@ TEST(LogicWriteDownNumber, AddMaxNumbersToTicket)
     writeDownNumber(&ticket,i+10);
 
   TEST_ASSERT_EQUAL_INT8(7, ticket.currentNumber);
+}
+
+TEST(LogicWriteDownNumber, TicketFull)
+{
+  Ticket ticket;
+  initialiseTicket(&ticket);
+
+  int i;
+  for (i = 0; i < MAX_NUMBER; i++)
+    writeDownNumber(&ticket,i+10);
+
+  writeDownNumber(&ticket, 35);
+
+  TEST_ASSERT_EQUAL_INT8(7, ticket.currentNumber);
+}
+
+TEST(LogicWriteDownNumber, SameNumberTwice)
+{
+  Ticket ticket;
+  initialiseTicket(&ticket);
+
+  writeDownNumber(&ticket, 2);
+  writeDownNumber(&ticket, 2);
+
+  TEST_ASSERT_EQUAL_INT8(1, ticket.currentNumber);
 }

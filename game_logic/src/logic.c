@@ -15,8 +15,11 @@ bool writeDownNumber(Ticket* ticket, int8_t number)
 {
   bool success = false;
 
-  ticket->numbers[ticket->currentNumber++] = number;
-  success = true;
+  if (ticket->currentNumber < MAX_NUMBER)
+  {
+    ticket->numbers[ticket->currentNumber++] = number;
+    success = true;
+  }
 
   return success;
 }
