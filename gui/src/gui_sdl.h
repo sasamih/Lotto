@@ -8,8 +8,8 @@
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
 
-SDL_Window* gWindow = NULL;
-SDL_Surface* gScreenSurface = NULL;
+SDL_Window* gWindow;
+SDL_Surface* gScreenSurface;
 
 bool init();
 bool loadMedia();

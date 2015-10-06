@@ -1,10 +1,7 @@
 #include <SDL2/SDL.h>
 #include "../../unity/unity_fixture.h"
 #include <stdbool.h>
-// #include "../src/gui_sdl.h"
-
-extern SDL_Window* gWindow;
-extern SDL_Surface* gScreenSurface;
+#include "../src/gui_sdl.h"
 
 TEST_GROUP(SDLTest);
 
