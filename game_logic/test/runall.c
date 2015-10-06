@@ -2,7 +2,7 @@
 
 static void RunAllTests(void)
 {
-  RUN_TEST_GROUP(LogicTest);
+  RUN_TEST_GROUP(LogicInitialiseTicket);
 }
 
 int main(int argc, char* argv[])

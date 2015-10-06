@@ -1,6 +1,6 @@
 - Tests for initialiseTicket
-  - 1) serialNumber is 1
-  - 2) currentNumber is 0
+  - ~~1) First ticket serial number value~~
+  - ~~2) Value of currentNumber variable~~
 
 - Tests for writeDownNumber
   - 1) Add first number to ticket
@@ -12,4 +12,4 @@
 - Tests for deleteNumberFromTicket
   - 1) Delete number from empty ticket
   - 2) Delete number from non empty ticket
-  - 3) Delete non existing number from ticket 
+  - 3) Delete non existing number from ticket
