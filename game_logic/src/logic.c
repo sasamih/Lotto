@@ -13,12 +13,21 @@ void initialiseTicket(Ticket* ticket)
 
 bool writeDownNumber(Ticket* ticket, int8_t number)
 {
-  bool success = false;
+  bool success = true;
 
-  if (ticket->currentNumber < MAX_NUMBER)
+  int i;
+  for(i = 0; i < ticket->currentNumber; i++)
+  {
+    if (ticket->numbers[i] == number)
+    {
+      success = false;
+      break;
+    }
+  }
+
+  if (ticket->currentNumber < MAX_NUMBER && success != false)
   {
     ticket->numbers[ticket->currentNumber++] = number;
-    success = true;
   }
 
   return success;
