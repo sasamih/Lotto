@@ -123,6 +123,13 @@ void pickSelectedNumber(SDL_Rect* pickNumber,int columnNumber,int rowNumber)
   SDL_BlitSurface(currentGrid[rowNumber*7+columnNumber],NULL,gScreenSurface,pickNumber);
 }
 
+void unpickSelectedNumber(SDL_Rect* unpickNumber,int columnNumber, int rowNumber)
+{
+  currentGrid[rowNumber * 7 + columnNumber] = availableNumbers[rowNumber * 7 + columnNumber];
+
+  SDL_BlitSurface(currentGrid[rowNumber*7+columnNumber],NULL,gScreenSurface,unpickNumber);
+}
+
 void release()
 {
   SDL_FreeSurface(gScreenSurface);

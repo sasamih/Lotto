@@ -45,14 +45,25 @@ int main(int argc, char* argv[])
              {
                if (SDL_BUTTON_LEFT == e.button.button)
                {
-                 columnNumber = e.button.y / NUMBER_WIDTH;
-                 rowNumber = e.button.x / NUMBER_HEIGHT;
+                 columnNumber = e.button.x / NUMBER_WIDTH;
+                 rowNumber = e.button.y / NUMBER_HEIGHT;
                  pickNumber.x = columnNumber * NUMBER_WIDTH;
                  pickNumber.y = rowNumber * NUMBER_HEIGHT;
                  pickNumber.w = NUMBER_WIDTH;
                  pickNumber.h = NUMBER_HEIGHT;
 
                  pickSelectedNumber(&pickNumber,columnNumber,rowNumber);
+               }
+               else if (SDL_BUTTON_RIGHT == e.button.button)
+               {
+                columnNumber = e.button.x / NUMBER_WIDTH;
+                rowNumber = e.button.y / NUMBER_HEIGHT;
+                pickNumber.x = columnNumber * NUMBER_WIDTH;
+                pickNumber.y = rowNumber * NUMBER_HEIGHT;
+                pickNumber.w = NUMBER_WIDTH;
+                pickNumber.h = NUMBER_HEIGHT;
+
+                unpickSelectedNumber(&pickNumber,columnNumber,rowNumber);
                }
              }
              blitCurrentGrid();
