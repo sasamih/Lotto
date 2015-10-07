@@ -19,6 +19,7 @@ int main(int argc, char* argv[])
       bool quit = false;
       bool start = true;
       SDL_Event e;
+      SDL_Rect pickNumber;
 
       uint8_t rowNumber;
       uint8_t columnNumber;
@@ -36,11 +37,26 @@ int main(int argc, char* argv[])
            if (start)
            {
             fillAvailableNumbers();
-             start = true;
+             start = false;
            }
+           else
+           {
+             if (SDL_MOUSEBUTTONDOWN == e.type)
+             {
+               if (SDL_BUTTON_LEFT == e.button.button)
+               {
+                 columnNumber = e.button.y / NUMBER_WIDTH;
+                 rowNumber = e.button.x / NUMBER_HEIGHT;
+                 pickNumber.x = columnNumber * NUMBER_WIDTH;
+                 pickNumber.y = rowNumber * NUMBER_HEIGHT;
+                 pickNumber.w = NUMBER_WIDTH;
+                 pickNumber.h = NUMBER_HEIGHT;
 
-
-
+                 pickSelectedNumber(&pickNumber,columnNumber,rowNumber);
+               }
+             }
+             blitCurrentGrid();
+           }
         //  SDL_BlitSurface(currentGrid,NULL,gScreenSurface,NULL);
           SDL_UpdateWindowSurface(gWindow);
         }

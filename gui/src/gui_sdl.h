@@ -21,6 +21,8 @@ SDL_Surface* currentGrid[TOTAL_NUMBERS];
 bool init();
 bool loadMedia();
 void fillAvailableNumbers();
+void blitCurrentGrid();
+void pickSelectedNumber(SDL_Rect* pickNumber,int columnNumber,int rowNumber);
 void release();
 
 #endif

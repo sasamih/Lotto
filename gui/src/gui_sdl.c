@@ -97,6 +97,32 @@ void fillAvailableNumbers()
   }
 }
 
+void blitCurrentGrid()
+{
+  int i,j;
+
+  for (i = 0; i < 5; i++)
+  {
+    for (j = 0; j < 7; j++)
+    {
+      SDL_Rect number = {j * NUMBER_WIDTH, i * NUMBER_HEIGHT, NUMBER_WIDTH, NUMBER_HEIGHT};
+      SDL_BlitSurface(currentGrid[i*7+j],NULL,gScreenSurface,&number);
+    }
+  }
+  for (j = 0; j < 4; j++)
+  {
+    SDL_Rect number = {j * NUMBER_WIDTH, i * NUMBER_HEIGHT, NUMBER_WIDTH, NUMBER_HEIGHT};
+    SDL_BlitSurface(currentGrid[i*7+j],NULL,gScreenSurface,&number);
+  }
+}
+
+void pickSelectedNumber(SDL_Rect* pickNumber,int columnNumber,int rowNumber)
+{
+  currentGrid[rowNumber * 7 + columnNumber] = pickedNumber[rowNumber * 7 + columnNumber];   // moguce refaktorisati
+
+  SDL_BlitSurface(currentGrid[rowNumber*7+columnNumber],NULL,gScreenSurface,pickNumber);
+}
+
 void release()
 {
   SDL_FreeSurface(gScreenSurface);
