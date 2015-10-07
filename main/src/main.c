@@ -17,7 +17,11 @@ int main(int argc, char* argv[])
     else
     {
       bool quit = false;
+      bool start = true;
       SDL_Event e;
+
+      uint8_t rowNumber;
+      uint8_t columnNumber;
 
       while(!quit)
       {
@@ -27,8 +31,17 @@ int main(int argc, char* argv[])
           {
             quit = true;
           }
-
           SDL_FillRect(gScreenSurface,NULL,SDL_MapRGB(gScreenSurface->format,0xFF,0xFF,0xFF));
+
+           if (start)
+           {
+            fillAvailableNumbers();
+             start = true;
+           }
+
+
+
+        //  SDL_BlitSurface(currentGrid,NULL,gScreenSurface,NULL);
           SDL_UpdateWindowSurface(gWindow);
         }
       }

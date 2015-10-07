@@ -16,9 +16,11 @@ SDL_Window* gWindow;
 SDL_Surface* gScreenSurface;
 SDL_Surface* availableNumbers[TOTAL_NUMBERS];
 SDL_Surface* pickedNumber[TOTAL_NUMBERS];
+SDL_Surface* currentGrid[TOTAL_NUMBERS];
 
 bool init();
 bool loadMedia();
+void fillAvailableNumbers();
 void release();
 
 #endif

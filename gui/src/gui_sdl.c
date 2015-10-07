@@ -73,6 +73,30 @@ bool loadMedia()
 	return success;
 }
 
+void fillAvailableNumbers()
+{
+  int i,j;
+
+  for (i = 0; i < 5; i++)
+  {
+    for (j = 0; j < 7; j++)
+    {
+      SDL_Rect number = {j * NUMBER_WIDTH, i * NUMBER_HEIGHT, NUMBER_WIDTH, NUMBER_HEIGHT};
+      SDL_BlitSurface(availableNumbers[i*7+j],NULL,gScreenSurface,&number);
+    }
+  }
+  for (j = 0; j < 4; j++)
+  {
+    SDL_Rect number = {j * NUMBER_WIDTH, i * NUMBER_HEIGHT, NUMBER_WIDTH, NUMBER_HEIGHT};
+    SDL_BlitSurface(availableNumbers[i*7+j],NULL,gScreenSurface,&number);
+  }
+
+  for (i = 0; i < TOTAL_NUMBERS; i++)
+  {
+    currentGrid[i] = availableNumbers[i];
+  }
+}
+
 void release()
 {
   SDL_FreeSurface(gScreenSurface);
