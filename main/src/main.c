@@ -1,5 +1,15 @@
 #include "main.h"
 
+void buttonPressed()
+{
+  columnNumber = e.button.x / NUMBER_WIDTH;
+  rowNumber = e.button.y / NUMBER_HEIGHT;
+  pickNumber.x = columnNumber * NUMBER_WIDTH;
+  pickNumber.y = rowNumber * NUMBER_HEIGHT;
+  pickNumber.w = NUMBER_WIDTH;
+  pickNumber.h = NUMBER_HEIGHT;
+}
+
 int main(int argc, char* argv[])
 {
   initialiseSerialGlobal();
@@ -18,11 +28,9 @@ int main(int argc, char* argv[])
     {
       bool quit = false;
       bool start = true;
-      SDL_Event e;
-      SDL_Rect pickNumber;
-
-      uint8_t rowNumber;
-      uint8_t columnNumber;
+      Ticket ticket;
+      initialiseSerialGlobal();
+      initialiseTicket(&ticket);
 
       while(!quit)
       {
@@ -37,7 +45,7 @@ int main(int argc, char* argv[])
            if (start)
            {
             fillAvailableNumbers();
-             start = false;
+            start = false;
            }
            else
            {
@@ -45,25 +53,14 @@ int main(int argc, char* argv[])
              {
                if (SDL_BUTTON_LEFT == e.button.button)
                {
-                 columnNumber = e.button.x / NUMBER_WIDTH;
-                 rowNumber = e.button.y / NUMBER_HEIGHT;
-                 pickNumber.x = columnNumber * NUMBER_WIDTH;
-                 pickNumber.y = rowNumber * NUMBER_HEIGHT;
-                 pickNumber.w = NUMBER_WIDTH;
-                 pickNumber.h = NUMBER_HEIGHT;
-
+                 buttonPressed();
                  pickSelectedNumber(&pickNumber,columnNumber,rowNumber);
+                 writeDownNumber(&ticket, rowNumber*7+columnNumber+1);
                }
                else if (SDL_BUTTON_RIGHT == e.button.button)
                {
-                columnNumber = e.button.x / NUMBER_WIDTH;
-                rowNumber = e.button.y / NUMBER_HEIGHT;
-                pickNumber.x = columnNumber * NUMBER_WIDTH;
-                pickNumber.y = rowNumber * NUMBER_HEIGHT;
-                pickNumber.w = NUMBER_WIDTH;
-                pickNumber.h = NUMBER_HEIGHT;
-
-                unpickSelectedNumber(&pickNumber,columnNumber,rowNumber);
+                 buttonPressed();
+                 unpickSelectedNumber(&pickNumber,columnNumber,rowNumber);
                }
              }
              blitCurrentGrid();

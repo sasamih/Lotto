@@ -10,6 +10,11 @@
 #include "../../stats/src/stats.h"
 
 extern uint8_t serialGlobal;
+SDL_Event e;
+SDL_Rect pickNumber;
+
+uint8_t rowNumber;
+uint8_t columnNumber;
 
 typedef struct game
 {

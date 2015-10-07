@@ -11,5 +11,4 @@ void createPlayer(Player* player, char* pName)
 	{
 		player->name[i] = pName[i];
 	}
-
 }
