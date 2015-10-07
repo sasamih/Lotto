@@ -2,6 +2,8 @@
 
 int main(int argc, char* argv[])
 {
+  initialiseSerialGlobal();
+
   if (!init())
   {
     printf("Failed to initialize SDL. Error: %s\n", SDL_GetError());

@@ -1,5 +1,22 @@
 #include "logic.h"
 
+static bool isNumberOnTicket(Ticket* ticket,int8_t number)
+{
+  bool success = true;
+
+  int i;
+  for(i = 0; i < ticket->currentNumber; i++)
+  {
+    if (ticket->numbers[i] == number)
+    {
+      success = false;
+      break;
+    }
+  }
+
+  return success;
+}
+
 void initialiseSerialGlobal()
 {
   serialGlobal = 1;
@@ -15,19 +32,13 @@ bool writeDownNumber(Ticket* ticket, int8_t number)
 {
   bool success = true;
 
-  int i;
-  for(i = 0; i < ticket->currentNumber; i++)
-  {
-    if (ticket->numbers[i] == number)
-    {
-      success = false;
-      break;
-    }
-  }
-
-  if (ticket->currentNumber < MAX_NUMBER && success != false)
+  if (ticket->currentNumber < MAX_NUMBER && isNumberOnTicket(ticket,number))
   {
     ticket->numbers[ticket->currentNumber++] = number;
+  }
+  else
+  {
+    success = false;
   }
 
   return success;
