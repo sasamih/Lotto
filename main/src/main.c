@@ -10,12 +10,31 @@ int main(int argc, char* argv[])
   }
   else
   {
-    SDL_FillRect(gScreenSurface,NULL,SDL_MapRGB(gScreenSurface->format,0xFF,0xFF,0xFF));
-    SDL_UpdateWindowSurface(gWindow);
+    if (!loadMedia())
+    {
+      printf("Failed to load images! Error: %s\n",SDL_GetError());
+    }
+    else
+    {
+      bool quit = false;
+      SDL_Event e;
 
-    SDL_Delay(3000);
-    release();
+      while(!quit)
+      {
+        while(SDL_PollEvent(&e) != 0)
+        {
+          if (SDL_QUIT == e.type)
+          {
+            quit = true;
+          }
+
+          SDL_FillRect(gScreenSurface,NULL,SDL_MapRGB(gScreenSurface->format,0xFF,0xFF,0xFF));
+          SDL_UpdateWindowSurface(gWindow);
+        }
+      }
+    }
   }
+  release();
 
   return 0;
 }

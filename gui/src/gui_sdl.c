@@ -37,7 +37,7 @@ bool loadMedia()
 		char* tmp = (char*) calloc(3,sizeof(char));
 		char* name = (char*) calloc(100,sizeof(char));
 
-		strcat(name,"../resources/res1/_");
+		strcat(name,"resources/res1/_");
 		snprintf(tmp,3,"%d",i);
 		strcat(strcat(name,tmp),".bmp");
 
@@ -56,7 +56,7 @@ bool loadMedia()
 		char* tmp = (char*) calloc(3,sizeof(char));
 		char* name = (char*) calloc(100,sizeof(char));
 
-		strcat(name,"../resources/res1/x");
+		strcat(name,"resources/res1/x");
 		snprintf(tmp,3,"%d",i);
 		strcat(strcat(name,tmp),".bmp");
 
