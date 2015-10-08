@@ -20,5 +20,6 @@ void initialiseSerialGlobal();
 void initialiseTicket(Ticket* ticket);
 bool writeDownNumber(Ticket* ticket, int8_t number);
 bool deleteNumberFromTicket(Ticket* ticket,int8_t number);
+void generateWinningTicket(Ticket* winningTicket);
 
 #endif

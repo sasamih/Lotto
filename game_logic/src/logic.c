@@ -82,3 +82,18 @@ bool deleteNumberFromTicket(Ticket* ticket,int8_t number)
 
    return success;
 }
+
+void generateWinningTicket(Ticket* winningTicket)
+{
+  int i = 0;
+  int8_t number;
+
+  while(i < MAX_NUMBER)
+  {
+      number = (rand() % 39) + 1;
+      if(!isNumberOnTicket(winningTicket,number))
+      {
+        winningTicket->numbers[i++] = number;
+      }
+  }
+}

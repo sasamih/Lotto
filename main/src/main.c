@@ -37,10 +37,14 @@ int main(int argc, char* argv[])
       bool quit = false;
       bool start = true;
       Ticket ticket;
-      initialiseSerialGlobal();
-      initialiseTicket(&ticket);
+      Ticket winningTicket;
+
       bool done = true;
       generatePressed = false;
+
+      initialiseSerialGlobal();
+      initialiseTicket(&ticket);
+      initialiseTicket(&winningTicket);
 
       while(!quit)
       {
@@ -77,6 +81,8 @@ int main(int argc, char* argv[])
                  {
                    generatePressed = !generatePressed;
                    loadTicket(&ticket);
+                   //generateWinningTicket(&winningTicket);
+                   //loadTicket(&winningTicket);
                  }
                }
                else if (SDL_BUTTON_RIGHT == e.button.button)

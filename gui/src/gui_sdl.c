@@ -92,7 +92,7 @@ void loadTicket(Ticket* ticket)
   int i;
   for(i = 0; i < MAX_NUMBER; i++)
   {
-    ticketImage[i] = pickedNumber[ticket->numbers[i] - 1];
+    ticketImage[i] = availableNumbers[ticket->numbers[i] - 1];
   }
 }
 

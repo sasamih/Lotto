@@ -24,6 +24,7 @@ SDL_Surface* pickedNumber[TOTAL_NUMBERS];
 SDL_Surface* currentGrid[TOTAL_NUMBERS];
 SDL_Surface* generateButton;
 SDL_Surface* ticketImage[MAX_NUMBER];
+SDL_Surface* winningTicket[MAX_NUMBER];
 
 bool init();
 bool loadMedia();
