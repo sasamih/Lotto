@@ -160,9 +160,10 @@ TEST(LogicDeleteNumber, DeleteNumberFromTicket)
   Ticket ticket;
   initialiseTicket(&ticket);
   writeDownNumber(&ticket,2);
-  writeDownNumber(&ticket,3);
+  writeDownNumber(&ticket,17);
+  writeDownNumber(&ticket,25);
 
-  int8_t numberToDelete = 2;
+  int8_t numberToDelete = 17;
   deleteNumberFromTicket(&ticket, numberToDelete);
 
   int i;

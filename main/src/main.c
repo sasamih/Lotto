@@ -1,6 +1,6 @@
 #include "main.h"
 
-void buttonPressed()
+static void buttonPressed()
 {
   columnNumber = e.button.x / NUMBER_WIDTH;
   rowNumber = e.button.y / NUMBER_HEIGHT;
@@ -8,6 +8,14 @@ void buttonPressed()
   pickNumber.y = rowNumber * NUMBER_HEIGHT;
   pickNumber.w = NUMBER_WIDTH;
   pickNumber.h = NUMBER_HEIGHT;
+}
+
+static void printTicketNumbers(Ticket* ticket)
+{
+  int i;
+  for(i = 0; i < ticket->currentNumber;i++)
+    printf("%d ",ticket->numbers[i]);
+  printf("\n");
 }
 
 int main(int argc, char* argv[])
@@ -31,6 +39,7 @@ int main(int argc, char* argv[])
       Ticket ticket;
       initialiseSerialGlobal();
       initialiseTicket(&ticket);
+      bool done = true;
 
       while(!quit)
       {
@@ -55,12 +64,13 @@ int main(int argc, char* argv[])
                {
                  buttonPressed();
                  pickSelectedNumber(&pickNumber,columnNumber,rowNumber);
-                 writeDownNumber(&ticket, rowNumber*7+columnNumber+1);
+                 done = writeDownNumber(&ticket, rowNumber*7+columnNumber+1);
                }
                else if (SDL_BUTTON_RIGHT == e.button.button)
                {
                  buttonPressed();
                  unpickSelectedNumber(&pickNumber,columnNumber,rowNumber);
+                 done = deleteNumberFromTicket(&ticket,rowNumber*7+columnNumber+1);
                }
              }
              blitCurrentGrid();

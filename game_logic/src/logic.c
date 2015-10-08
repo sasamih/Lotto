@@ -63,7 +63,7 @@ bool deleteNumberFromTicket(Ticket* ticket,int8_t number)
      }
      i++;
 
-     for(i;i > ticket->currentNumber; i++)
+     for(i;i < ticket->currentNumber; i++)
      {
        tmp[i-1] = ticket->numbers[i];
      }
@@ -78,7 +78,6 @@ bool deleteNumberFromTicket(Ticket* ticket,int8_t number)
      {
        ticket->numbers[i] = tmp[i];
      }
-
    }
 
    return success;
