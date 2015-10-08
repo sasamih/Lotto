@@ -13,6 +13,7 @@ extern uint8_t serialGlobal;
 SDL_Event e;
 SDL_Rect pickNumber;
 
+bool generatePressed;
 uint8_t rowNumber;
 uint8_t columnNumber;
 

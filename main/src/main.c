@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
   }
   else
   {
-    if (!loadMedia())
+    if (!loadMedia() || !(loadGenerateButton()))
     {
       printf("Failed to load images! Error: %s\n",SDL_GetError());
     }
@@ -40,6 +40,7 @@ int main(int argc, char* argv[])
       initialiseSerialGlobal();
       initialiseTicket(&ticket);
       bool done = true;
+      generatePressed = false;
 
       while(!quit)
       {
@@ -50,7 +51,8 @@ int main(int argc, char* argv[])
             quit = true;
           }
           SDL_FillRect(gScreenSurface,NULL,SDL_MapRGB(gScreenSurface->format,0xFF,0xFF,0xFF));
-
+          SDL_Rect button = {GEN_BUTTON_X, GEN_BUTTON_Y, GEN_BUTTON_WIDTH, GEN_BUTTON_HEIGHT};
+          SDL_BlitSurface(generateButton,NULL,gScreenSurface,&button);
            if (start)
            {
             fillAvailableNumbers();
@@ -62,9 +64,20 @@ int main(int argc, char* argv[])
              {
                if (SDL_BUTTON_LEFT == e.button.button)
                {
-                 buttonPressed();
-                 pickSelectedNumber(&pickNumber,columnNumber,rowNumber);
-                 done = writeDownNumber(&ticket, rowNumber*7+columnNumber+1);
+                 if (e.button.x < 280 && e.button.y < 240)
+                 {
+                   buttonPressed();
+                   if (ticket.currentNumber < MAX_NUMBER)
+                   {
+                     pickSelectedNumber(&pickNumber,columnNumber,rowNumber);
+                   }
+                   done = writeDownNumber(&ticket, rowNumber*7+columnNumber+1);
+                 }
+                 else if(e.button.x > 300 && e.button.x < 600 && e.button.y < 90 && ticket.currentNumber == MAX_NUMBER)
+                 {
+                   generatePressed = !generatePressed;
+                   loadTicket(&ticket);
+                 }
                }
                else if (SDL_BUTTON_RIGHT == e.button.button)
                {
@@ -74,8 +87,11 @@ int main(int argc, char* argv[])
                }
              }
              blitCurrentGrid();
+             if(generatePressed)
+             {
+               printTicket();
+             }
            }
-        //  SDL_BlitSurface(currentGrid,NULL,gScreenSurface,NULL);
           SDL_UpdateWindowSurface(gWindow);
         }
       }

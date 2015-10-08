@@ -73,6 +73,39 @@ bool loadMedia()
 	return success;
 }
 
+bool loadGenerateButton()
+{
+  bool success = true;
+
+  generateButton = IMG_Load("resources/generate-button.bmp");
+  if (generateButton == NULL)
+  {
+    printf("Failed to load button! %s\n", SDL_GetError());
+    success = false;
+  }
+
+  return success;
+}
+
+void loadTicket(Ticket* ticket)
+{
+  int i;
+  for(i = 0; i < MAX_NUMBER; i++)
+  {
+    ticketImage[i] = pickedNumber[ticket->numbers[i] - 1];
+  }
+}
+
+void printTicket()
+{
+  int i;
+  for(i = 0; i < MAX_NUMBER; i++)
+  {
+    SDL_Rect number = {310 + i * NUMBER_WIDTH,100,NUMBER_WIDTH,NUMBER_HEIGHT};
+    SDL_BlitSurface(ticketImage[i],NULL,gScreenSurface,&number);
+  }
+}
+
 void fillAvailableNumbers()
 {
   int i,j;
