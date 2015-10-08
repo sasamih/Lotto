@@ -3,6 +3,7 @@
 
 TEST_GROUP(LogicInitialiseTicket);
 TEST_GROUP(LogicWriteDownNumber);
+TEST_GROUP(LogicDeleteNumber);
 
 TEST_GROUP_RUNNER(LogicInitialiseTicket)
 {
@@ -17,6 +18,13 @@ TEST_GROUP_RUNNER(LogicWriteDownNumber)
   RUN_TEST_CASE(LogicWriteDownNumber, AddMaxNumbersToTicket);
   RUN_TEST_CASE(LogicWriteDownNumber, TicketFull);
   RUN_TEST_CASE(LogicWriteDownNumber, SameNumberTwice);
+}
+
+TEST_GROUP_RUNNER(LogicDeleteNumber)
+{
+  RUN_TEST_CASE(LogicDeleteNumber, TicketEmpty);
+  RUN_TEST_CASE(LogicDeleteNumber, NonExistingNumberOnTicket);
+  RUN_TEST_CASE(LogicDeleteNumber, DeleteNumberFromTicket);
 }
 
 TEST_SETUP(LogicInitialiseTicket)
@@ -35,6 +43,16 @@ TEST_SETUP(LogicWriteDownNumber)
 }
 
 TEST_TEAR_DOWN(LogicWriteDownNumber)
+{
+
+}
+
+TEST_SETUP(LogicDeleteNumber)
+{
+  initialiseSerialGlobal();
+}
+
+TEST_TEAR_DOWN(LogicDeleteNumber)
 {
 
 }
@@ -114,4 +132,48 @@ TEST(LogicWriteDownNumber, SameNumberTwice)
   writeDownNumber(&ticket, 2);
 
   TEST_ASSERT_EQUAL_INT8(1, ticket.currentNumber);
+}
+
+// ========================================================================= //
+
+TEST(LogicDeleteNumber, TicketEmpty)
+{
+  Ticket ticket;
+  initialiseTicket(&ticket);
+
+  TEST_ASSERT_TRUE(false == deleteNumberFromTicket(&ticket, 2));
+}
+
+TEST(LogicDeleteNumber, NonExistingNumberOnTicket)
+{
+  Ticket ticket;
+  initialiseTicket(&ticket);
+  writeDownNumber(&ticket,2);
+  writeDownNumber(&ticket,3);
+
+  TEST_ASSERT_TRUE(false == deleteNumberFromTicket(&ticket, 4));
+}
+
+TEST(LogicDeleteNumber, DeleteNumberFromTicket)
+{
+  Ticket ticket;
+  initialiseTicket(&ticket);
+  writeDownNumber(&ticket,2);
+  writeDownNumber(&ticket,3);
+
+  int8_t numberToDelete = 2;
+  deleteNumberFromTicket(&ticket, numberToDelete);
+
+  int i;
+  bool exists = false;
+  for(i = 0; i < ticket.currentNumber; i++)
+  {
+    if(ticket.numbers[i] == numberToDelete)
+    {
+      exists = true;
+      break;
+    }
+  }
+
+  TEST_ASSERT_TRUE(false == exists);
 }

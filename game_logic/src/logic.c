@@ -2,14 +2,14 @@
 
 static bool isNumberOnTicket(Ticket* ticket,int8_t number)
 {
-  bool success = true;
+  bool success = false;
 
   int i;
   for(i = 0; i < ticket->currentNumber; i++)
   {
     if (ticket->numbers[i] == number)
     {
-      success = false;
+      success = true;
       break;
     }
   }
@@ -32,7 +32,7 @@ bool writeDownNumber(Ticket* ticket, int8_t number)
 {
   bool success = true;
 
-  if (ticket->currentNumber < MAX_NUMBER && isNumberOnTicket(ticket,number))
+  if (ticket->currentNumber < MAX_NUMBER && !(isNumberOnTicket(ticket,number)))
   {
     ticket->numbers[ticket->currentNumber++] = number;
   }
@@ -42,4 +42,44 @@ bool writeDownNumber(Ticket* ticket, int8_t number)
   }
 
   return success;
+}
+
+bool deleteNumberFromTicket(Ticket* ticket,int8_t number)
+{
+   bool success = true;
+
+   if((0 == ticket->currentNumber) || !(isNumberOnTicket(ticket, number)))
+   {
+     success = false;
+   }
+   else
+   {
+     int i = 0;
+     int8_t tmp[ticket->currentNumber-1];
+     while(number != ticket->numbers[i])
+     {
+       tmp[i] = ticket->numbers[i];
+       i++;
+     }
+     i++;
+
+     for(i;i > ticket->currentNumber; i++)
+     {
+       tmp[i-1] = ticket->numbers[i];
+     }
+
+     for(i = 0; i < ticket->currentNumber; i++)
+     {
+       ticket->numbers[i] = 0;
+     }
+
+     ticket->currentNumber--;
+     for(i = 0; i < ticket->currentNumber;i++)
+     {
+       ticket->numbers[i] = tmp[i];
+     }
+
+   }
+
+   return success;
 }

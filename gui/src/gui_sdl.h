@@ -23,6 +23,7 @@ bool loadMedia();
 void fillAvailableNumbers();
 void blitCurrentGrid();
 void pickSelectedNumber(SDL_Rect* pickNumber,int columnNumber,int rowNumber);
+void unpickSelectedNumber(SDL_Rect* unpickNumber,int columnNumber,int rowNumber);
 void release();
 
 #endif

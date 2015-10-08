@@ -10,6 +10,6 @@
   - ~~5) Add same number to ticket twice~~
 
 - Tests for deleteNumberFromTicket
-  - 1) Delete number from empty ticket
-  - 2) Delete number from non empty ticket
-  - 3) Delete non existing number from ticket
+  - ~~1) Delete number from empty ticket~~
+  - ~~2) Delete non existing number from ticket~~
+  - 3) Delete existing number from non empty ticket
