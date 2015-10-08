@@ -5,10 +5,11 @@
 #include <stdbool.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include "../../game_logic/src/logic.h"
 
 #define SCREEN_WIDTH 640
-#define SCREEN_HEIGHT 480
+#define SCREEN_HEIGHT 350
 #define TOTAL_NUMBERS 39
 #define NUMBER_WIDTH 40
 #define NUMBER_HEIGHT 40
@@ -25,6 +26,13 @@ SDL_Surface* currentGrid[TOTAL_NUMBERS];
 SDL_Surface* generateButton;
 SDL_Surface* ticketImage[MAX_NUMBER];
 SDL_Surface* winningTicketImage[MAX_NUMBER];
+SDL_Surface* youHave;
+SDL_Surface* numberOfMatches;
+SDL_Surface* matches;
+SDL_Surface* textCombination;
+SDL_Surface* textWinCombination;
+TTF_Font* font;
+TTF_Font* font2;
 
 bool init();
 bool loadMedia();
@@ -37,6 +45,7 @@ void printWinningTicket();
 void blitCurrentGrid();
 void pickSelectedNumber(SDL_Rect* pickNumber,int columnNumber,int rowNumber);
 void unpickSelectedNumber(SDL_Rect* unpickNumber,int columnNumber,int rowNumber);
+void printResult(uint8_t match);
 void release();
 
 #endif

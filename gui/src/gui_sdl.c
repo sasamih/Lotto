@@ -110,7 +110,7 @@ void printTicket()
   int i;
   for(i = 0; i < MAX_NUMBER; i++)
   {
-    SDL_Rect number = {310 + i * NUMBER_WIDTH,100,NUMBER_WIDTH,NUMBER_HEIGHT};
+    SDL_Rect number = {310 + i * NUMBER_WIDTH,130,NUMBER_WIDTH,NUMBER_HEIGHT};
     SDL_BlitSurface(ticketImage[i],NULL,gScreenSurface,&number);
   }
 }
@@ -120,7 +120,7 @@ void printWinningTicket()
   int i;
   for(i = 0; i < MAX_NUMBER; i++)
   {
-    SDL_Rect number = {310 + i * NUMBER_WIDTH,150,NUMBER_WIDTH,NUMBER_HEIGHT};
+    SDL_Rect number = {310 + i * NUMBER_WIDTH,200,NUMBER_WIDTH,NUMBER_HEIGHT};
     SDL_BlitSurface(winningTicketImage[i],NULL,gScreenSurface,&number);
   }
 }
@@ -182,8 +182,53 @@ void unpickSelectedNumber(SDL_Rect* unpickNumber,int columnNumber, int rowNumber
   SDL_BlitSurface(currentGrid[rowNumber*7+columnNumber],NULL,gScreenSurface,unpickNumber);
 }
 
+void printResult(uint8_t match)
+{
+  char* score = (char*) malloc(2*sizeof(char));
+  snprintf(score, 2, "%d", match);
+
+  TTF_Init();
+  SDL_Color textColor = {0, 0, 0};
+
+  font = TTF_OpenFont("resources/open-sans/OpenSans-Light.ttf", 28);
+  font2 = TTF_OpenFont("resources/open-sans/OpenSans-Light.ttf", 20);
+
+  textCombination = TTF_RenderText_Solid(font2, "Your combination:", textColor);
+  textWinCombination = TTF_RenderText_Solid(font2, "Winning combination:", textColor);
+  youHave = TTF_RenderText_Solid(font, "You have ", textColor);
+  numberOfMatches = TTF_RenderText_Solid(font, score, textColor);
+  matches = TTF_RenderText_Solid(font, " matches!", textColor);
+
+  SDL_Rect text1 = {310, 100, 100, 20};
+  SDL_Rect text2 = {310, 170, 100, 20};
+  SDL_Rect m1 = {320, 250, 120, 30};
+  SDL_Rect m2 = {440, 250, 30, 30};
+  SDL_Rect m3 = {460, 250, 50, 30};
+
+  SDL_BlitSurface(textCombination,NULL,gScreenSurface,&text1);
+  SDL_BlitSurface(textWinCombination,NULL,gScreenSurface,&text2);
+  SDL_BlitSurface(youHave,NULL,gScreenSurface,&m1);
+  SDL_BlitSurface(numberOfMatches,NULL,gScreenSurface,&m2);
+  SDL_BlitSurface(matches,NULL,gScreenSurface,&m3);
+
+  TTF_CloseFont(font);
+
+  TTF_Quit();
+
+}
+
+void freeText()
+{
+  SDL_FreeSurface(textCombination);
+  SDL_FreeSurface(textWinCombination);
+  SDL_FreeSurface(youHave);
+  SDL_FreeSurface(numberOfMatches);
+  SDL_FreeSurface(matches);
+}
+
 void release()
 {
+  freeText();
   SDL_FreeSurface(gScreenSurface);
   SDL_DestroyWindow(gWindow);
 

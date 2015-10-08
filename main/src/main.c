@@ -98,7 +98,8 @@ int main(int argc, char* argv[])
                generateWinningTicket(&winningTicket);
                loadWinningTicket(&winningTicket);
                printWinningTicket();
-               // printf("%d\n",checkForMatches(&winningTicket,&ticket));
+               uint8_t matches = checkForMatches(&winningTicket,&ticket);
+               printResult(matches);
              }
            }
           SDL_UpdateWindowSurface(gWindow);
