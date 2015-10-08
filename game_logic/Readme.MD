@@ -12,4 +12,5 @@
 - Tests for deleteNumberFromTicket
   - ~~1) Delete number from empty ticket~~
   - ~~2) Delete non existing number from ticket~~
-  - 3) Delete existing number from non empty ticket
+  - ~~3) Delete existing number from non empty ticket~~
+  - ~~4) Variable currentNumber decremenented after deleting~~

@@ -25,6 +25,7 @@ TEST_GROUP_RUNNER(LogicDeleteNumber)
   RUN_TEST_CASE(LogicDeleteNumber, TicketEmpty);
   RUN_TEST_CASE(LogicDeleteNumber, NonExistingNumberOnTicket);
   RUN_TEST_CASE(LogicDeleteNumber, DeleteNumberFromTicket);
+  RUN_TEST_CASE(LogicDeleteNumber, IsCurrentNumberDecremented);
 }
 
 TEST_SETUP(LogicInitialiseTicket)
@@ -176,4 +177,17 @@ TEST(LogicDeleteNumber, DeleteNumberFromTicket)
   }
 
   TEST_ASSERT_TRUE(false == exists);
+}
+
+TEST(LogicDeleteNumber, IsCurrentNumberDecremented)
+{
+  Ticket ticket;
+  initialiseTicket(&ticket);
+  writeDownNumber(&ticket,15);
+  writeDownNumber(&ticket,18);
+
+  int8_t numberToDelete = 15;
+  deleteNumberFromTicket(&ticket, numberToDelete);
+
+  TEST_ASSERT_EQUAL_INT8(1, ticket.currentNumber);
 }
