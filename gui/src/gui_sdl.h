@@ -24,13 +24,16 @@ SDL_Surface* pickedNumber[TOTAL_NUMBERS];
 SDL_Surface* currentGrid[TOTAL_NUMBERS];
 SDL_Surface* generateButton;
 SDL_Surface* ticketImage[MAX_NUMBER];
-SDL_Surface* winningTicket[MAX_NUMBER];
+SDL_Surface* winningTicketImage[MAX_NUMBER];
 
 bool init();
 bool loadMedia();
 bool loadGenerateButton();
 void loadTicket(Ticket* ticket);
+void loadWinningTicket(Ticket* ticket);
 void fillAvailableNumbers();
+void printTicket();
+void printWinningTicket();
 void blitCurrentGrid();
 void pickSelectedNumber(SDL_Rect* pickNumber,int columnNumber,int rowNumber);
 void unpickSelectedNumber(SDL_Rect* unpickNumber,int columnNumber,int rowNumber);

@@ -88,12 +88,15 @@ void generateWinningTicket(Ticket* winningTicket)
   int i = 0;
   int8_t number;
 
-  while(i < MAX_NUMBER)
+  while(winningTicket->currentNumber < MAX_NUMBER)
   {
       number = (rand() % 39) + 1;
-      if(!isNumberOnTicket(winningTicket,number))
-      {
-        winningTicket->numbers[i++] = number;
-      }
+      writeDownNumber(winningTicket, number);
   }
+
+ /* for(i = 0; i < winningTicket->currentNumber; i++)
+  {
+    printf("%d ",winningTicket->numbers[i]);
+  }
+  printf("\n"); */
 }

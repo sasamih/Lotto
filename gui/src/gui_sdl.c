@@ -96,6 +96,15 @@ void loadTicket(Ticket* ticket)
   }
 }
 
+void loadWinningTicket(Ticket* ticket)
+{
+  int i;
+  for(i = 0; i < MAX_NUMBER; i++)
+  {
+    winningTicketImage[i] = pickedNumber[ticket->numbers[i] - 1];
+  }
+}
+
 void printTicket()
 {
   int i;
@@ -103,6 +112,16 @@ void printTicket()
   {
     SDL_Rect number = {310 + i * NUMBER_WIDTH,100,NUMBER_WIDTH,NUMBER_HEIGHT};
     SDL_BlitSurface(ticketImage[i],NULL,gScreenSurface,&number);
+  }
+}
+
+void printWinningTicket()
+{
+  int i;
+  for(i = 0; i < MAX_NUMBER; i++)
+  {
+    SDL_Rect number = {310 + i * NUMBER_WIDTH,150,NUMBER_WIDTH,NUMBER_HEIGHT};
+    SDL_BlitSurface(winningTicketImage[i],NULL,gScreenSurface,&number);
   }
 }
 

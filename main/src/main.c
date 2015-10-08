@@ -81,8 +81,7 @@ int main(int argc, char* argv[])
                  {
                    generatePressed = !generatePressed;
                    loadTicket(&ticket);
-                   //generateWinningTicket(&winningTicket);
-                   //loadTicket(&winningTicket);
+                   initialiseTicket(&winningTicket);
                  }
                }
                else if (SDL_BUTTON_RIGHT == e.button.button)
@@ -96,6 +95,10 @@ int main(int argc, char* argv[])
              if(generatePressed)
              {
                printTicket();
+               generateWinningTicket(&winningTicket);
+               loadWinningTicket(&winningTicket);
+               printWinningTicket();
+               // printf("%d\n",checkForMatches(&winningTicket,&ticket));
              }
            }
           SDL_UpdateWindowSurface(gWindow);
